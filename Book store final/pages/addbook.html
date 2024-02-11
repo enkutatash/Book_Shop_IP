@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="shortcut icon" href="../img/icon.jpg" type="image/x-icon">
+    <script type="text/javascript" src="../js/script.js"></script>
+    <title>Book Add</title>
+
+   <style>
+        *{
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
+           font-family: 'Poppins', sans-serif;
+         }
+        fieldset{
+            width: 400px;
+            margin: 30px auto;
+            text-align: center;
+            border-radius: 20px;
+           
+        }
+        .form {
+            
+            max-width: 300px;
+        }
+        .form input{
+            display: block;
+            width: 350px;
+            height: 30px;
+            margin: 30px;
+           
+        }
+        .form label{
+            display: block;
+            text-align: left;
+            padding-left: 20px;
+        }
+        .form .btn{
+         cursor: pointer;
+         background-color: #0b910b;
+         color: #ffffff;
+         font-size: 20px;
+         border: none;
+         border-radius: 10px;
+        }
+
+        .form .btn:hover{
+        border: 1px solid #0b910b;
+        color: #0b910b;
+        background: #ffffff;
+        }
+        @media(max-width:900px)
+{
+    fieldset{
+        width :400px;
+    }
+    input{
+        max-width: 250px;
+      
+    }
+    
+}
+    </style>
+</head>
+<body>
+
+    <!--Header Section-->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="../img/logo2.jpg" alt="" style="width: 40px; height: 30px;"> 
+                <h2>Book Store</h2>
+            </div>
+
+            <div class="navmenu">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../pages/addbook.html"><a style="text-decoration: none; color: inherit;" href=".\addaudio.html"> Add Audio Books</a></a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <fieldset class="form">
+            <legend>Text Book</legend>
+    
+            <form action="">
+            <label>Book Name</label> <input type="text" name="name" required>
+            <label>Price</label> <input type="number" name="price" required>
+            <label>Cover Image</label><input type="url" name="coverimage" required> 
+            <label>Book</label><input type="file" name="book" required>
+            <label>Blog </label><textarea name="blog" id="" cols="30" rows="10"></textarea>
+            <input type="submit" value="Add Book" onclick="addbook()" class="btn">               
+            </form>
+        </fieldset>
+    </header>
+</body>
+</html>

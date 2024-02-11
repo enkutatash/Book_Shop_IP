@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+    <link rel="stylesheet" href="../css/adminstyle.css" />
+    <link rel="shortcut icon" href="../img/icon.jpg" type="image/x-icon" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <title>Book Store</title>
+
+    <style>
+      .card {
+        display: inline-block;
+        left: 25%;
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="side-bar">
+      <div class="logo">
+        <h2><i class="bx bxs-user"></i> Administrator</h2>
+      </div>
+      <ul>
+        <li><i class="bx bxs-dashboard"></i> Dashboard</li>
+        <li><i class="bx bxs-book-add"></i><a style="text-decoration: none; color: inherit;" href=".\addbook.html"> Add Books</a></li>
+        <li><i class="bx bxs-edit-alt"></i> Edit Books</li>
+        <li><i class="bx bxl-blogger"></i> Blogs</li>
+        <li><i class="bx bxs-cog"></i> Setting</li>
+        <li><i class="bx bxs-log-out"></i> Log Out</li>
+      </ul>
+    </div>
+
+    <div class="head">
+      <nav
+        class="navbar"
+        style="margin-left: 21%; width: 78%; background: lightblue"
+      >
+        <div class="logo">
+          <img
+            src="../img/logo2.jpg"
+            alt=""
+            style="width: 40px; height: 30px"
+          />
+          <h2>Book Store</h2>
+        </div>
+
+        <div class="navmenu">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="#">Add</a></li>
+            <li><a href="#">Edit</a></li>
+            <li><a href="../pages/signin.html">Sign Out</a></li>
+          </ul>
+          <div class="search-box">
+            <input type="search" class="search" placeholder="search here...." />
+            <i class="bx bx-search"></i>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!--cards-->
+    <div class="card" style="width: 10rem">
+      <img src="../img/5plus.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <p class="card-text">Users</p>
+      </div>
+    </div>
+
+    <div class="card" style="width: 10rem; margin-left: 60px">
+      <img src="../img/5plus.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <p class="card-text">Books</p>
+      </div>
+    </div>
+
+    <div class="card" style="width: 10rem; margin-left: 60px">
+      <img src="../img/5plus.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <p class="card-text">Activities</p>
+      </div>
+    </div>
+
+    <div class="card" style="width: 10rem; margin-left: 60px">
+      <img src="../img/5plus.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <p class="card-text">Activities</p>
+      </div>
+    </div>
+
+    <!--Table Section-->
+
+    <table class="table" style="width: 75%">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Book</th>
+          <th scope="col">Type</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>The Avengers</td>
+          <td>Novel</td>
+          <td>Present</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Chemicals</td>
+          <td>Science</td>
+          <td>Present</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Light of sky</td>
+          <td>Novel</td>
+          <td>Present</td>
+        </tr>
+      </tbody>
+    </table>
+   
+  </body>
+</html>
