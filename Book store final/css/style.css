@@ -28,6 +28,7 @@
 .navmenu{
     display: flex;
     justify-content: space-between;
+    padding-left: 50vh;
     align-items: center;
     z-index: 1000;
 }
@@ -313,6 +314,7 @@ form {
     font-size: 24px;
     font-weight: 600;
 }
+
 
 
 /*--------Footer CSS Section----------*/

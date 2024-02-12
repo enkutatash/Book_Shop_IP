@@ -84,7 +84,7 @@
             <div class="navmenu">
                 <ul>
                     <li><a href="../index.html">Home</a></li>
-                    <li><a style="text-decoration: none; color: white;" href=".\addaudio.html"> Add Audio Books</a></li>
+                    <li><a style="text-decoration: none; color: white;" href=".\editbook.html"> edit Books</a></li>
                 </ul>
             </div>
         </nav>
@@ -96,7 +96,8 @@
             <label>Book Name</label> <input type="text" name="name" required>
             <label>Price</label> <input type="number" name="price" required>
             <label>Cover Image</label><input type="url" name="coverimage" required> 
-            <label>Book</label><input type="file" name="book" required>
+            <label>Book</label><input type="file" id="audioInput" accept="audio/*">
+            <label>Audio sample </label><input type="file" id="audioInput" accept="audio/*">
             <label>Blog </label><textarea name="blog" id="" cols="30" rows="10"></textarea>
             <input type="submit" value="Add Book" onclick="addbook()" class="btn">               
             </form>

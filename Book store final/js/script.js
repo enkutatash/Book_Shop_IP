@@ -42,3 +42,4 @@ const sideBar = document.querySelector('.side-bar');
 hamburgerIcon.addEventListener('click', () => {
     sideBar.classList.toggle('active');
 });
+
