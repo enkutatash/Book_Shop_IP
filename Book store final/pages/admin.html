@@ -16,35 +16,76 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+     
     <title>Book Store</title>
 
-    <style>
-      .card {
-        display: inline-block;
-        left: 25%;
-        margin-top: 30px;
-      }
-    </style>
+    
   </head>
+
   <body>
+
     <div class="side-bar">
-      <div class="logo">
-        <h2><i class="bx bxs-user"></i> Administrator</h2>
+      <div class="top" >
+        <div class="logo" >
+        <h2>  <i class="bx bx-user"></i>  Admin</h2>
       </div>
+      <i class="bx bx-menu" id="btn" style=" color: #47143a;"></i>
+      </div>
+      
       <ul>
-        <li><i class="bx bxs-dashboard"></i> Dashboard</li>
-        <li><i class="bx bxs-book-add"></i><a style="text-decoration: none; color: inherit;" href=".\addbook.html"> Add Books</a></li>
-        <li><i class="bx bxs-edit-alt"></i> Edit Books</li>
-        <li><i class="bx bxl-blogger"></i> Blogs</li>
-        <li><i class="bx bxs-cog"></i> Setting</li>
-        <li><i class="bx bxs-log-out"></i> Log Out</li>
+        <li>
+          <a href="#">
+            <i class="bx bxs-dashboard"></i> 
+            <span class="nav-item">Dashboard</span>
+          </a>
+          <span class="tooltip">Dashboard</span>
+        </li>
+        <li>
+          <a href=".\addbook.html">
+            <i class="bx bxs-book-add"></i>
+          <span class="nav-item">  Add Books</span>
+          
+          </a>
+          <span class="tooltip">Add Books</span>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bxs-edit-alt"></i> 
+          <span class="nav-item">Edit Books</span>
+          </a>
+          <span class="tooltip">Edit Books</span></li>
+        <li>
+          <a href="#">
+            <i class="bx bxl-blogger"></i> 
+          <span class="nav-item">Blogs</span>
+          </a>
+          <span class="tooltip">Blogs</span>
+          </li>
+        <li>
+          <a href="#">
+            <i class="bx bxs-cog"></i> 
+          <span class="nav-item">Setting</span>
+          </a>
+          <span class="tooltip">Setting</span>
+        </li>
+          
+        <li>
+          <a href="#">
+            <i class="bx bxs-log-out"></i> 
+            <span class="nav-item">Log out</span>
+          </a>
+            <span class="tooltip">Log out</span>
+        </li>
+          
       </ul>
     </div>
-
-    <div class="head">
+    
+    <div class="main-content">
+      
+        <div class="head">
       <nav
         class="navbar"
-        style="margin-left: 21%; width: 78%; background: lightblue"
+        style="background: lightskyblue;  "
       >
         <div class="logo">
           <img
@@ -55,53 +96,64 @@
           <h2>Book Store</h2>
         </div>
 
-        <div class="navmenu">
-          <ul>
+        <div class="navmenu" style="padding-left: 65%;" >
+          <ul >
             <li><a href="../index.html">Home</a></li>
-            <li><a href="#">Add</a></li>
-            <li><a href="#">Edit</a></li>
             <li><a href="../pages/signin.html">Sign Out</a></li>
           </ul>
-          <div class="search-box">
-            <input type="search" class="search" placeholder="search here...." />
-            <i class="bx bx-search"></i>
-          </div>
+          
+        </div>
+
+        <div class="menuicon">
+            <button onclick="myFunction()" class="icon">
+              <i class="bx bx-menu" style=" color: #47143a;"></i>
+            </button>
+            
         </div>
       </nav>
-    </div>
 
-    <!--cards-->
-    <div class="card" style="width: 10rem">
+      <div class="menu" id="mylinks">
+                    <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../pages/signin.html">Sign Out</a></li>
+          </ul>
+                    
+                </div> 
+        </div>
+        <div class="card-container">
+          <!--cards-->
+      <div class="card" >
       <img src="../img/5plus.png" class="card-img-top" alt="..." />
       <div class="card-body">
         <p class="card-text">Users</p>
       </div>
-    </div>
+      </div>
 
-    <div class="card" style="width: 10rem; margin-left: 60px">
+      <div class="card" >
       <img src="../img/5plus.png" class="card-img-top" alt="..." />
       <div class="card-body">
         <p class="card-text">Books</p>
       </div>
-    </div>
+      </div>
 
-    <div class="card" style="width: 10rem; margin-left: 60px">
+    <div class="card" >
       <img src="../img/5plus.png" class="card-img-top" alt="..." />
       <div class="card-body">
         <p class="card-text">Activities</p>
       </div>
     </div>
-
-    <div class="card" style="width: 10rem; margin-left: 60px">
+    <div class="card" >
       <img src="../img/5plus.png" class="card-img-top" alt="..." />
       <div class="card-body">
         <p class="card-text">Activities</p>
       </div>
     </div>
+        </div>
+    
 
     <!--Table Section-->
 
-    <table class="table" style="width: 75%">
+    <table class="table" >
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -132,5 +184,22 @@
       </tbody>
     </table>
    
+  </div>
+   
   </body>
+  <script>
+      let btn=document.querySelector('#btn')
+      let sidebar=document.querySelector('.side-bar')
+      btn.onclick=function(){
+        sidebar.classList.toggle('active');
+      };
+      function myFunction() {
+    var x = document.getElementById("mylinks");
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+}
+   </script>
 </html>
