@@ -1,5 +1,4 @@
 var attempt = 3;
-
 function validate() {
     var username = document.getElementById("email").value;
     var password = document.getElementById("password").value;
