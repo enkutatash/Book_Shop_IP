@@ -1,3 +1,63 @@
+<?php
+session_start();
+
+include "../backend/connection.php";
+
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $pass = $_POST['password'];
+    $error_message = array();
+
+    $emailRegex = "/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/";
+    $passwordRegex = "/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/"; // Minimum 8 characters, at least one uppercase letter, one number, and one special character
+
+
+    if (!preg_match($emailRegex, $email)) {
+        $error_message['email'] = "Invalid email format.";
+      }
+    if (empty($pass)) {
+    $error_message['password'] =  "Password is required.";
+
+    }
+
+if((empty($error_message)  && isset($email) && isset($pass) )){
+
+    try {
+        // Prepare and execute the SQL statement
+        $stmt = $conn->prepare("SELECT * FROM user WHERE email = :email");
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        // Check if the user exists
+        if ($stmt->rowCount() > 0) {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $password_hash = $row['userpassword'];
+            
+            // Verify the password
+            if (password_verify($pass, $password_hash)) {
+               
+                $_SESSION['id'] = $row['id'];
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['firstname'] = $row['firstname'];
+                header("Location: ../index.html");
+                exit();
+            } else {
+                $error_message['password'] = "Wrong Password";
+
+            }
+        } else {
+            $error_message['email'] = "Email Don't Exist";
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+}
+
+
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,6 +119,11 @@
             color: #0b910b;
             background: #ffffff;
         }
+        .form .message{
+            color: red;
+            font-size: 15px;
+            text-align: center;
+        }
         @media(max-width:900px)
         {
             fieldset{
@@ -109,10 +174,21 @@
             </ul>
         </div>
         <fieldset class="form">
-            <form action="../backend/signin.php" method = 'POST'>
+            <form action="" method = 'POST'>
+
                 <!-- Your form fields (e.g., username, password) go here -->
-                <input type="text" id="email" placeholder="Email" name="email">
+                <input type="email" placeholder="Email" id="email" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>">
+                <?php if(isset($error_message['email'])): ?>
+                    <div class="message">
+                        <p ><?php echo $error_message['email']; ?></p>
+                    </div>
+                <?php endif; ?>
                 <input type="password" id="password" placeholder="Password" name="password">
+                <?php if(isset($error_message['password'])): ?>
+                    <div class="message">
+                        <p ><?php echo $error_message['password']; ?></p>
+                    </div>
+                <?php endif; ?>
                 <input class="btn" type="submit" name="login" value="Log In">
             </form>
             <span>Don't have an account? <a href="signup.html">Sign Up</a>  </span>
