@@ -1,24 +1,24 @@
-var attempt = 3;
-function validate() {
-    var username = document.getElementById("email").value;
-    var password = document.getElementById("password").value;
+// var attempt = 3;
+// function validate() {
+//     var username = document.getElementById("email").value;
+//     var password = document.getElementById("password").value;
 
-    if (username === "admin@admin.com" && password === "admin@123") {
-        alert("-----Success------Welcome Admin");
-        // Redirecting to other page.
-        localStorage.clear();
-        window.location.assign('../pages/admin.html')
-        return false;
-    } else {
-        attempt--;
-        alert("Incorrect Credentials. You have " + attempt + " attempt(s) left.");
+//     if (username === "admin@admin.com" && password === "admin@123") {
+//         alert("-----Success------Welcome Admin");
+//         // Redirecting to other page.
+//         localStorage.clear();
+//         window.location.assign('../pages/admin.html')
+//         return false;
+//     } else {
+//         attempt--;
+//         alert("Incorrect Credentials. You have " + attempt + " attempt(s) left.");
 
-        if (attempt === 0) {
-            disableForm();
-        }
-        return false;
-    }
-}
+//         if (attempt === 0) {
+//             disableForm();
+//         }
+//         return false;
+//     }
+// }
 
 function disableForm() {
     document.getElementById("email").disabled = true;

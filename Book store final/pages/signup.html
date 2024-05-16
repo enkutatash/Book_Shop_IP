@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link rel="shortcut icon" href="../img/icon.jpg" type="image/x-icon">
-    <script src="https://kit.fontawesome.com/6d978107ba.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/6d978107ba.js" crossorigin="anonymous"></script> -->
     <script type="text/javascript" src="../js/script.js"></script>
     <title>Book Bay</title>
 
@@ -75,7 +76,7 @@
 
             <div class="navmenu">
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../">Home</a></li>
                     <li><a href="#signup.html">Sign Up</a></li>
                     <li><a href="../pages/signin.html">Sign In</a></li>
                 </ul>
@@ -90,24 +91,22 @@
         </nav>
         <div class="menu" id="mylinks">
                     <ul>
-                       <li><a href="../index.html">Home</a></li>
+                       <li><a href="../">Home</a></li>
                     <li><a href="#signup.html">Sign Up</a></li>
                     <li><a href="../pages/signin.html">Sign In</a></li>
-
-                  
                     </ul>
                     </div>
         <fieldset class="form">
             <legend>Sign Up</legend>
             
-            <form action="" id="registrationForm">
+            <form action="../backend/signup.php" method = 'POST'>
                 <h1>Create Account</h1>
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email" id="email">
-                <input type="number" placeholder="Phone">
-                <input type="password" minlength="8" maxlength="32" placeholder="Password" id="password">
-                <input type="password"  minlength="8" maxlength="32"  placeholder="Retype Password" id="cpassword">
-                <input class="btn" type="submit" name="" value="Sign Up">
+                <input type="text" placeholder="Name" name = "name">
+                <input type="email" placeholder="Email" id="email" name="email">
+                <input type="number" placeholder="Phone" name="phone">
+                <input type="password" minlength="8" maxlength="32" placeholder="Password" id="password" name="password">
+                <input type="password"  minlength="8" maxlength="32"  placeholder="Retype Password" id="cpassword" name="cpassword">
+                <input class="btn" type="submit" name="register" value="Sign Up">
             </form>
 
             <span class="span">Already have an account? <a href="signin.html">Sign In</a> </span>
@@ -116,5 +115,5 @@
         
     </header>
 
-    <script type="text/javascript" src="../js/signup.js"></script></body>
+    <!-- <script type="text/javascript" src="../js/signup.js"></script></body> -->
 </html>
