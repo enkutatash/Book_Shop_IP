@@ -14,9 +14,6 @@ if (isset($_POST['register'])) {
 
     if (empty($name)) {
       $error_message['name'] = "Name is required.";
-  }else{
-    
-
   }
 
 
@@ -189,6 +186,7 @@ if (isset($_POST['register'])) {
                         <p ><?php echo $error_message['cpassword']; ?></p>
                     </div>
                 <?php endif; ?>
+              
                 <input class="btn" type="submit" name="register" value="Sign Up">
             </form>
 
