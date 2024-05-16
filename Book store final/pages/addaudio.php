@@ -144,6 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <p ><?php echo $error_message['price']; ?></p>
                     </div>
                 <?php endif; ?>
+                
                 <label>Cover Image</label><input type="file" name="coverimage" required value="<?php echo isset($_FILES['coverimage']) ? $_FILES['coverimage'] : ''; ?>"> 
                 <?php if(isset($error_message['coverimage'])): ?>
                     <div class="message">
