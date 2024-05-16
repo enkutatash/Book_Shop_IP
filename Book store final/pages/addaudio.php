@@ -2,10 +2,10 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $price = $_POST['price'];
-    $coverimage = $_POST['coverimage'];
+    $coverimage = $_FILES['coverimage']['name'];
     $blog = $_POST['blog'];
     $book =$_FILES['audio']['name'];
-   $booksample = $_FILES['audiosample']['name'];
+    $booksample = $_FILES['audiosample']['name'];
 
     $error_message = array();
     
@@ -144,12 +144,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <p ><?php echo $error_message['price']; ?></p>
                     </div>
                 <?php endif; ?>
-            <label>Cover Image</label><input type="url" name="coverimage" required value="<?php echo isset($_POST['coverimage']) ? $_POST['coverimage'] : ''; ?>"> 
+                <label>Cover Image</label><input type="file" name="coverimage" required value="<?php echo isset($_FILES['coverimage']) ? $_FILES['coverimage'] : ''; ?>"> 
                 <?php if(isset($error_message['coverimage'])): ?>
                     <div class="message">
                         <p ><?php echo $error_message['coverimage']; ?></p>
                     </div>
-                <?php endif; ?>  
+                <?php endif; ?>
             <label>Audio sample </label><input type="file" id="audioInput" accept="audio/*" name="audiosample" value="<?php echo isset($_POST['audiosample']) ? $_POST['audiosample'] : ''; ?>">
             <label>Audio</label><input type="file" id="audioInput" accept="audio/*" name="audio" value="<?php echo isset($_POST['audio']) ? $_POST['audio'] : ''; ?>">
             <?php if(isset($error_message['audio'])): ?>

@@ -3,7 +3,7 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $price = $_POST['price'];
-    $coverimage = $_POST['coverimage'];
+    $coverimage = $_FILES['coverimage']['name'];
     $blog = $_POST['blog'];
     $book =$_FILES['book']['name'];
    
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     
     if (empty($coverimage)  ) {
-    $error_message['coverimage'] = "cover image is required.";
+    $error_message['coverimage'] = "Cover image is required.";
 
     }
    
@@ -151,13 +151,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <p ><?php echo $error_message['price']; ?></p>
                     </div>
                 <?php endif; ?>
-            <label>Cover Image</label><input type="url" name="coverimage" required value="<?php echo isset($_POST['coverimage']) ? $_POST['coverimage'] : ''; ?>"> 
+            <label>Cover Image</label><input type="file" name="coverimage" required value="<?php echo isset($_FILES['coverimage']) ? $_FILES['coverimage'] : ''; ?>"> 
                 <?php if(isset($error_message['coverimage'])): ?>
                     <div class="message">
                         <p ><?php echo $error_message['coverimage']; ?></p>
                     </div>
                 <?php endif; ?>
-            <label>Book</label><input type="file" name="book" required value="<?php echo isset($_POST['book']) ? $_POST['book'] : ''; ?>">
+            <label>Book</label><input type="file" name="book" required value="<?php echo isset($_FILES['book']) ? $_FILES['book'] : ''; ?>">
                     <?php if(isset($error_message['book'])): ?>
                         <div class="message">
                         <p ><?php echo $error_message['book']; ?></p>
