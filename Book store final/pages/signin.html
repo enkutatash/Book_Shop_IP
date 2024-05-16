@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link rel="shortcut icon" href="../img/icon.jpg" type="image/x-icon">
-    <script src="https://kit.fontawesome.com/6d978107ba.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/6d978107ba.js" crossorigin="anonymous"></script> -->
     
     <title>Book Bay</title>
     
@@ -104,18 +104,18 @@
             </ul>
         </div>
         <fieldset class="form">
-            <form id="loginForm">
+            <form action="../backend/signin.php" method = 'POST'>
                 <!-- Your form fields (e.g., username, password) go here -->
-                <input type="text" id="email" placeholder="Email">
-                <input type="password" id="password" placeholder="Password">
-                <input class="btn" type="submit" name="" value="Log In">
+                <input type="text" id="email" placeholder="Email" name="email">
+                <input type="password" id="password" placeholder="Password" name="password">
+                <input class="btn" type="submit" name="login" value="Log In">
             </form>
             <span>Don't have an account? <a href="signup.html">Sign Up</a>  </span>
         </fieldset>
     </header>
     <!-- Include your other HTML elements here -->
-    <script type="text/javascript" src="../js/script.js"></script>
-    <script type="text/javascript" src="../js/signin.js"></script></body>
+    <!-- <script type="text/javascript" src="../js/script.js"></script>
+    <script type="text/javascript" src="../js/signin.js"></script></body> -->
 
     
 </body>
