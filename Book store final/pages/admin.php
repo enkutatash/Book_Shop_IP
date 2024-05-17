@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -111,72 +110,71 @@ session_start();
       </div>
     </div>
     <!--Table Section-->
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Book Name</th>
-          <th scope="col">Price</th>
-          <th scope="col">Update</th>
-          <th scope="col">Remove</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-        
-        try {
-          $servername = "localhost";
-          $username = "root";
-          $password = "";
-          $dbname = "bookstore";
-          
-          $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-          // set the PDO error mode to exception
-          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-          $stmt = $conn->prepare("SELECT id, bookname, price FROM textbook");
-          $stmt->execute();
+    <?php
+    try {
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "bookstore";
 
-          if(isset($_GET['id'])) {
-            $delete = $conn->prepare("DELETE FROM textbook WHERE id = :id");
-            $delete->bindParam(':id', $_GET['id']);
-            $delete->execute();
-          
-            unset($_GET['id']);
-            
-            header("Location: ../pages/admin.php");
-            exit(); 
-          }
-          
-          // Fetch all results
-          $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+      // set the PDO error mode to exception
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-          if (count($result) > 0) {
-          
-            foreach ($result as $row) {
-              echo "<tr>";
-              echo "<th scope='row'>" . htmlspecialchars($row["id"]) . "</th>";
-              echo "<td>" . htmlspecialchars($row['bookname']) . "</td>";
-              echo "<td>" . htmlspecialchars($row['price']) . "</td>";
-              echo "<td>
-              <a href='updatebook.php?id=" . htmlspecialchars($row['id']) . "'>
-                <button class='btn '>Update</button>
-              </td>";
-              echo "<td>
-                  <a href='admin.php?id=" . htmlspecialchars($row['id']) . "'>
-                    <button class='btn btn-remove'>Remove</button>
-              </td>";
-              echo "</tr>";
+      // Handle deletions
+      if (isset($_GET['textbook_id'])) {
+        $delete = $conn->prepare("DELETE FROM textbook WHERE id = :id");
+        $delete->bindParam(':id', $_GET['textbook_id']);
+        $delete->execute();
+        header("Location: ../pages/admin.php?" . mt_rand());
+        exit();
+      }
+      if (isset($_GET['audiobook_id'])) {
+        $delete = $conn->prepare("DELETE FROM audiobook WHERE id = :id");
+        $delete->bindParam(':id', $_GET['audiobook_id']);
+        $delete->execute();
+        header("Location: ../pages/admin.php?" . mt_rand());
+        exit();
+      }
+
+      // Fetch and display textbooks
+      $stmt = $conn->prepare("SELECT id, bookname, price FROM textbook");
+      $stmt->execute();
+      $textbooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+      // Fetch and display audiobooks
+      $stmt = $conn->prepare("SELECT id, bookname, price FROM audiobook");
+      $stmt->execute();
+      $audiobooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+      function displayBooks($books, $type) {
+        echo "<table class='table'>";
+        echo "<caption>List of " . ucfirst($type) . " Books</caption>";
+        echo "<thead><tr><th scope='col'>#</th><th scope='col'>Book Name</th><th scope='col'>Price</th><th scope='col'>Update</th><th scope='col'>Remove</th></tr></thead>";
+        echo "<tbody>";
+        if (count($books) > 0) {
+          foreach ($books as $row) {
+            echo "<tr>";
+            echo "<th scope='row'>" . htmlspecialchars($row["id"]) . "</th>";
+            echo "<td>" . htmlspecialchars($row['bookname']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['price']) . "</td>";
+            echo "<td><a href='updatebook.php?id=" . htmlspecialchars($row['id']) . "'><button class='btn'>Update</button></a></td>";
+            echo "<td><a href='admin.php?" . $type . "book_id=" . htmlspecialchars($row['id']) . "'><button class='btn btn-remove'>Remove</button></a></td>";
+            echo "</tr>";
           }
-          
-          } else {
-            echo "<tr><td colspan='5'>No books found.</td></tr>";
-          }
-        } catch (PDOException $e) {
-          echo "<tr><td colspan='5'>Error: " . $e->getMessage() . "</td></tr>";
+        } else {
+          echo "<tr><td colspan='5'>No books found.</td></tr>";
         }
-        ?>
-      </tbody>
-    </table>
+        echo "</tbody></table>";
+      }
+
+      displayBooks($textbooks, "text");
+      displayBooks($audiobooks, "audio");
+      
+    } catch (PDOException $e) {
+      echo "<div>Error: " . $e->getMessage() . "</div>";
+    }
+    ?>
   </div>
   <script>
     let btn = document.querySelector('#btn');
