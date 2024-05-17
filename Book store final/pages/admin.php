@@ -1,6 +1,7 @@
 <?php
 session_start();
-// include "connection.php"; // Ensure this file establishes a valid PDO connection
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -134,6 +135,17 @@ session_start();
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $stmt = $conn->prepare("SELECT id, bookname, price FROM textbook");
           $stmt->execute();
+
+          if(isset($_GET['id'])) {
+            $delete = $conn->prepare("DELETE FROM textbook WHERE id = :id");
+            $delete->bindParam(':id', $_GET['id']);
+            $delete->execute();
+          
+            unset($_GET['id']);
+            
+            header("Location: ../pages/admin.php");
+            exit(); 
+          }
           
           // Fetch all results
           $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -146,10 +158,12 @@ session_start();
               echo "<td>" . htmlspecialchars($row['bookname']) . "</td>";
               echo "<td>" . htmlspecialchars($row['price']) . "</td>";
               echo "<td>
-                  <button class='btn'>Update</button>
+              <a href='updatebook.php?id=" . htmlspecialchars($row['id']) . "'>
+                <button class='btn '>Update</button>
               </td>";
               echo "<td>
-                  <button class='btn btn-remove'>Remove</button>
+                  <a href='admin.php?id=" . htmlspecialchars($row['id']) . "'>
+                    <button class='btn btn-remove'>Remove</button>
               </td>";
               echo "</tr>";
           }

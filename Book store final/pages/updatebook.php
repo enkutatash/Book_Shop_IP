@@ -1,3 +1,18 @@
+<?php
+include "../backend/connection.php";
+
+$stmt = $conn->prepare("SELECT * FROM textbook WHERE id = :id");
+    $id = $_GET['id']; 
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+
+    // Fetch the result
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,17 +108,12 @@
             <legend>Text Book</legend>
     
             <form action="">
-            <label>Book Name</label> <input type="text" name="name" required list="browsers">
-            <datalist id="browsers">
-                <option value="The avengers">
-                <option value="chemicals">
-                <option value="Light of sky">
-                
-            </datalist>
-            <label>Price</label> <input type="number" name="price" required>
-            <label>Cover Image</label><input type="url" name="coverimage" required> 
-            <input type="file" name="book" required>
-            <label>Blog </label><textarea name="blog" id="" cols="30" rows="10"></textarea>
+            <label>Book Name</label> <input type="text" name="name" required list="browsers" value="<?php echo $row["bookname"]?>">
+            
+            <label>Price</label> <input type="number" name="price" required value="<?php echo $row["price"]?>">
+            <label>Cover Image</label><input type="text" name="coverimage" required value="<?php echo $row["covername"]?>"> 
+            <input type="file" name="book" required value="<?php echo $row["filename"]?>">
+            <label>Blog </label><textarea name="blog" id="" cols="30" rows="10" value="<?php echo $row["blog"]?>"></textarea>
             <input type="submit" value="Edit Book" onclick="addbook()" class="btn">
             </form>
         </fieldset>
