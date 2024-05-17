@@ -68,11 +68,11 @@ include "connection.php";
                 <ul>
                   <li><a href="../card.html">Cart</a></li>
 
-                  <li><a href="../index.html">Home</a></li>
+                  <li><a href="../index.php">Home</a></li>
                   
                   
                   <li class="dropdown">
-                    <a href="pages/books.html">Books</a>
+                    <a href="./books.php">Books</a>
             <ul class="dropdown-content">
               <li><a href="#textbooks">E-Book</a></li>
               <li><a href="#audiobooks">Audio Book</a></li>
