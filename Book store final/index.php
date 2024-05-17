@@ -1,3 +1,10 @@
+<?php
+session_start();
+include "../backend/connection.php";
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
  <head>
@@ -5,7 +12,7 @@
   <meta http-equiv="X-UA-Compatiable"  content="IE-edge">
   <meta name="viewport" content="width=device-width initial-scale=1.0">
 
-  <title>Book Bay</title>
+  <title>Book Buy</title>
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
@@ -30,7 +37,7 @@
                 <ul >
                     <li><a href="#home">Home</a></li>
                     <li><a href="#blog">Blog</a></li>
-                    <li><a href="pages/books.html">Books</a></li>
+                    <li><a href="backend/books.php">Books</a></li>
                     <li><a href="#about">About</a></li>                    
                     <li><a href="#contactus">Contact </a> </li>
                 </ul>
@@ -54,7 +61,7 @@
                     <ul>
                         <li><a href="#home">Home</a></li>
                     <li><a href="#blog">Blog</a></li>
-                    <li><a href="pages/books.html">Books</a></li>
+                    <li><a href="backend/books.php">Books</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contactus">Contact </a> </li>
                     </ul>
@@ -80,60 +87,45 @@
      <section id="blog">
         <h2 class="blog-header">Blogs.....</h2>
         <div class="set-row">
-         <div class="col">
-            <img src="img/image3.jpg" alt="">
-            
-            <p>Embark on a thrilling adventure with "The Lost Emerald of Briarwood."
-                 This captivating tale weaves mystery and magic as protagonist Alex sets out on 
-                 a quest to find a legendary emerald hidden in the enchanted Briarwood Forest. 
-                 With ancient secrets, mythical creatures, and unexpected allies, the journey 
-                 unfolds into a page-turning exploration of courage and discovery. 
-                 Join Alex in this spellbinding narrative that blends fantasy and adventure, 
-                promising an unforgettable quest for the lost emerald in the heart of Briarwood.</p>
-         </div>
-         
-         <div class="col">
-            <img src="img/image4.jpg" alt="">
-            
-            <p>Dive into the mesmerizing world of "Realm of Ruins,"
-                 where mysteries unfold amidst ancient landscapes. 
-                 In this captivating tale, protagonist Maya embarks on a quest
-                  through forgotten realms, navigating ruins steeped in secrets.
-                   As she unravels the enigma of a lost civilization, encounters 
-                   with mythical creatures and unforeseen challenges await. "Realm of Ruins" 
-                   promises an immersive journey into a world where history, magic,
-                    and adventure converge, creating a spellbinding narrative that keeps
-                     readers on the edge of their seats. Explore the depths of the unknown in
-                      this enthralling adventure where ruins reveal stories that defy time.</p>
-         </div> 
+        <?php
+        try {
 
-         <div class="col">
-            <img src="img/image5.jpg" alt="">
-           
-            <p>Dive into the pages of "Real Help," a practical guide
-                 that extends a compassionate hand in navigating life's challenges. 
-                 Authored by experienced professionals, this insightful book provides actionable 
-                 advice and genuine solutions for common struggles. Whether it's relationships, 
-                 stress, or personal growth, "Real Help" offers tangible strategies and empathetic
-                  insights to empower you on your journey. This invaluable resource is your go-to 
-                  companion for real-world support and a roadmap to a more resilient, fulfilled life. 
-                Discover genuine assistance within the pages of "Real Help."</p>
-         </div> 
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "bookstore";
 
-         <div class="col">
-            <img src="img/image7.jpg" alt="">
+
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            // set the PDO error mode to exception
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-            <p>In the gripping novel "Point of Control,"
-                 immerse yourself in a world where power takes center stage.
-                  As political intrigue and corporate machinations collide,
-                   protagonist Olivia finds herself at the epicenter of a high-stakes game. 
-                   With each twist and turn, the story unravels a web of deception,
-                    revealing the delicate balance between control and chaos. 
-                    Brace yourself for a riveting narrative that explores the limits of 
-                    power and the unexpected consequences that unfold at the critical 
-                    "Point of Control."</p>
-         </div> 
+          
+          $stmt = $conn->prepare("SELECT id, bookname, coverimage ,blog FROM textbook LIMIT 5");
+          $stmt->execute();
+          
+        
 
+          $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+          if (count($result) > 0) {
+            foreach ($result as $row) {
+                echo '<div class="col">';
+                echo '<img src="backend/uploads/' . htmlspecialchars($row['coverimage']) .'" alt="Book Image" class="card-img-top">';
+
+                echo '<p>'.$row['blog'].'</p>';
+                echo '</div>';
+
+            }
+          }}catch(PDOException $e){
+            echo "<p>Error: " . $e->getMessage() . "</p>";
+          }
+            ?>
+        
+        
+
+        
+
+        
         </div>
     </section>
 <hr>

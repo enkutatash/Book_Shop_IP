@@ -122,14 +122,7 @@ include "connection.php";
         
         <?php
         try {
-          $servername = "localhost";
-          $username = "root";
-          $password = "";
-          $dbname = "bookstore";
           
-          $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-          // set the PDO error mode to exception
-          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $stmt = $conn->prepare("SELECT id, bookname, price, coverimage FROM textbook");
           $stmt->execute();
           
@@ -143,7 +136,7 @@ include "connection.php";
             foreach ($result as $row) {
               echo '<div class="col-md-3 mb-4">';
               echo '<div class="card" style="width: 18rem;">';
-              echo '<img src="uploads/' . htmlspecialchars($row['coverimage']) . '" class="card-img-top" alt="Book Image" style="height: 200px;">';
+              echo '<img src="uploads/' . htmlspecialchars($row['coverimage']) .'" class="card-img-top" alt="Book Image" style="height: 200px;">';
               echo '<div class="card-body">';
               echo '<h5 class="card-title">' . htmlspecialchars($row['bookname']) . '</h5>';
               echo '<p class="card-text">' . htmlspecialchars($row['price']) . ' ETB</p>';

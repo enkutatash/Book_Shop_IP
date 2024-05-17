@@ -68,8 +68,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE php>
+<php lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -154,8 +154,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="navmenu">
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a style="text-decoration: none; color: white;" href="./addaudio.html">Add Audio Books</a></li>
+                    <li><a href="../index.php">Home</a></li>
+                    <li><a style="text-decoration: none; color: white;" href="./addaudio.php">Add Audio Books</a></li>
                 </ul>
             </div>
         </nav>
@@ -210,4 +210,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </fieldset>
     </header>
 </body>
-</html>
+</php>

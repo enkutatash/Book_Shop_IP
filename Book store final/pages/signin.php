@@ -150,9 +150,9 @@ if((empty($error_message)  && isset($email) && isset($pass) )){
             
             <div class="navmenu">
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../pages/signup.html">Sign Up</a></li>
-                    <li><a href="#signin.html">Sign In</a></li>
+                    <li><a href="../index.php">Home</a></li>
+                    <li><a href="../pages/signup.php">Sign Up</a></li>
+                    <li><a href="#signin.php">Sign In</a></li>
                 </ul>
                 
             </div>

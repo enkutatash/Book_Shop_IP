@@ -92,8 +92,8 @@ session_start();
         </div>
         <div class="navmenu" style="padding-left: 65%;">
           <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../pages/signin.html">Sign Out</a></li>
+            <li><a href="../index.php">Home</a></li>
+            <li><a href="../pages/signin.php">Sign Out</a></li>
           </ul>
         </div>
         <div class="menuicon">
@@ -104,8 +104,8 @@ session_start();
       </nav>
       <div class="menu" id="mylinks">
         <ul>
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="../pages/signin.html">Sign Out</a></li>
+          <li><a href="../index.php">Home</a></li>
+          <li><a href="../pages/signin.php">Sign Out</a></li>
         </ul>
       </div>
     </div>

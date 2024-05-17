@@ -71,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    html
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
@@ -141,8 +142,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="navmenu">
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href=".\editbook.html">Edit Books</a></li>
+                    <li><a href="../index.php">Home</a></li>
+                    <li><a href="./updatebook.php">Edit Books</a></li>
                 </ul>
             </div>
         </nav>

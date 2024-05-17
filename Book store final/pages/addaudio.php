@@ -122,8 +122,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="navmenu">
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../pages/addbook.html">Add Book</a></li>
+                    <li><a href="../index.php">Home</a></li>
+                    <li><a href="../pages/addbook.php">Add Book</a></li>
                 </ul>
             </div>
         </nav>

@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="navmenu">
                 <ul>
                     <li><a href="../index.html">Home</a></li>
-                    <li><a style="text-decoration: none; color: white;" href=".\addaudio.html"> Add Audio Books</a></li>
+                    <li><a style="text-decoration: none; color: white;" href=".\addaudio.php"> Add Audio Books</a></li>
                 </ul>
             </div>
         </nav>

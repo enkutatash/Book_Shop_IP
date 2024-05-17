@@ -129,8 +129,8 @@ if (isset($_POST['register'])) {
             <div class="navmenu">
                 <ul>
                     <li><a href="../">Home</a></li>
-                    <li><a href="#signup.html">Sign Up</a></li>
-                    <li><a href="../pages/signin.html">Sign In</a></li>
+                    <li><a href="#signup.php">Sign Up</a></li>
+                    <li><a href="../pages/signin.php">Sign In</a></li>
                 </ul>
             </div>
             <div class="menuicon">
