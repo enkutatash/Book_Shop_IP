@@ -158,7 +158,7 @@ session_start();
             echo "<th scope='row'>" . htmlspecialchars($row["id"]) . "</th>";
             echo "<td>" . htmlspecialchars($row['bookname']) . "</td>";
             echo "<td>" . htmlspecialchars($row['price']) . "</td>";
-            echo "<td><a href='updatebook.php?id=" . htmlspecialchars($row['id']) . "'><button class='btn'>Update</button></a></td>";
+            echo "<td><a href='updateaudio.php?id=" . htmlspecialchars($row['id']) . "'><button class='btn'>Update</button></a></td>";
             echo "<td><a href='admin.php?" . $type . "book_id=" . htmlspecialchars($row['id']) . "'><button class='btn btn-remove'>Remove</button></a></td>";
             echo "</tr>";
           }
