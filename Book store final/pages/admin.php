@@ -14,15 +14,20 @@ session_start();
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
   <title>Book Store</title>
   <style>
-    .btn{
-         cursor: pointer;
-         background-color: #0b910b;
-         color: #ffffff;
-         font-size: 20px;
-         border: none;
-         border-radius: 10px;
-        }
+    .btn {
+      cursor: pointer;
+      background-color: #0b910b;
+      color: #ffffff;
+      font-size: 20px;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+    }
 
+    .btn-remove {
+      background-color: red;
+      margin-left: 10px; /* Space between buttons */
+    }
   </style>
 </head>
 <body>
@@ -111,10 +116,8 @@ session_start();
           <th scope="col">#</th>
           <th scope="col">Book Name</th>
           <th scope="col">Price</th>
-          <th scope="col">delete</th>
-          <th scope="col">update</th>
-          
-
+          <th scope="col">Update</th>
+          <th scope="col">Remove</th>
         </tr>
       </thead>
       <tbody>
@@ -139,57 +142,23 @@ session_start();
           
             foreach ($result as $row) {
               echo "<tr>";
-echo "<th scope='row'>" . htmlspecialchars($row["id"]) . "</th>";
-echo "<td>" . htmlspecialchars($row['bookname']) . "</td>";
-echo "<td>" . htmlspecialchars($row['price']) . "</td>";
-echo "<td style='
-    cursor: pointer;
-    background-color: #0b910b;
-    color: #ffffff;
-    font-size: 20px;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-'>
-    <button style='
-        background-color: inherit;
-        border: none;
-        color: inherit;
-        cursor: pointer;
-        font-size: inherit;
-        width:30px;
-    '>Update</button>
-</td>";
-echo "<td style='
-    cursor: pointer;
-    background-color: red;
-    color: #ffffff;
-    font-size: 20px;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-'>
-    <button style='
-        background-color: inherit;
-        border: none;
-        color: inherit;
-        cursor: pointer;
-        font-size: inherit;
-        width:30px;
-    '>Remove</button>
-</td>";
-echo "</tr>";
-
-            }
+              echo "<th scope='row'>" . htmlspecialchars($row["id"]) . "</th>";
+              echo "<td>" . htmlspecialchars($row['bookname']) . "</td>";
+              echo "<td>" . htmlspecialchars($row['price']) . "</td>";
+              echo "<td>
+                  <button class='btn'>Update</button>
+              </td>";
+              echo "<td>
+                  <button class='btn btn-remove'>Remove</button>
+              </td>";
+              echo "</tr>";
+          }
+          
           } else {
-            echo "<tr><td colspan='3'>No books found.</td></tr>";
+            echo "<tr><td colspan='5'>No books found.</td></tr>";
           }
         } catch (PDOException $e) {
-          echo "<tr><td colspan='3'>Error: " . $e->getMessage() . "</td></tr>";
+          echo "<tr><td colspan='5'>Error: " . $e->getMessage() . "</td></tr>";
         }
         ?>
       </tbody>

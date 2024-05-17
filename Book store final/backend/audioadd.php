@@ -63,7 +63,7 @@ if (isset($_POST['addbook'])) {
                     $result = $sql->execute();
 
                     if ($result) {
-                        header("Location: ../pages/admin.html");
+                        header("Location: ../pages/admin.php");
                         exit();
                     } else {
                         echo 'Error: Could not add the book';
