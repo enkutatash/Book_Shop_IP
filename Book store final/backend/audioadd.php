@@ -6,6 +6,7 @@ if (isset($_POST['addbook'])) {
     $name = $_POST['name'];
     $price = $_POST['price'];
     $blog = $_POST['blog'];
+    $author = $_POST['author'];
 
     $coverimage = $_FILES['coverimage']['name'];
     $coverimagetemp = $_FILES['coverimage']['tmp_name'];
@@ -46,7 +47,7 @@ if (isset($_POST['addbook'])) {
                     $covertype = $_FILES["coverimage"]["type"];
 
                     // Insert the new audio into the database using prepared statements
-                    $sql = $conn->prepare("INSERT INTO audiobook (bookname, price, coverimage, coversize, covertype, blog, filename, filesize, filetype, samplename, samplesize, sampletype) VALUES (:bookname, :price, :coverimage, :coversize, :covertype, :blog, :filename, :filesize, :filetype, :samplename, :samplesize, :sampletype)");
+                    $sql = $conn->prepare("INSERT INTO audiobook (bookname, price, coverimage, coversize, covertype, blog, filename, filesize, filetype, samplename, samplesize, sampletype,author) VALUES (:bookname, :price, :coverimage, :coversize, :covertype, :blog, :filename, :filesize, :filetype, :samplename, :samplesize, :sampletype,:author)");
                     $sql->bindParam(':bookname', $name);
                     $sql->bindParam(':price', $price);
                     $sql->bindParam(':coverimage', $coverimagename);
@@ -59,6 +60,7 @@ if (isset($_POST['addbook'])) {
                     $sql->bindParam(':samplename', $samplefilename);
                     $sql->bindParam(':samplesize', $samplefilesize);
                     $sql->bindParam(':sampletype', $samplefiletype);
+                    $sql->bindParam(':author', $author);
 
                     $result = $sql->execute();
 

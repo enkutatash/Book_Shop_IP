@@ -6,6 +6,7 @@ if (isset($_POST['addbook'])) {
     $name = $_POST['name'];
     $price = $_POST['price'];
     $blog = $_POST['blog'];
+    $author = $_POST['author'];
 
     $coverimage = $_FILES['coverimage']['name'];
     $coverimagetemp = $_FILES['coverimage']['tmp_name'];
@@ -41,7 +42,7 @@ if (isset($_POST['addbook'])) {
                     $covertype = $_FILES["coverimage"]["type"];
 
                     // Insert the new book into the database using prepared statements
-                    $sql = $conn->prepare("INSERT INTO textbook (bookname, price, coverimage, coversize, covertype, blog, filename, filesize, filetype) VALUES (:bookname, :price, :coverimage, :coversize, :covertype, :blog, :filename, :filesize, :filetype)");
+                    $sql = $conn->prepare("INSERT INTO textbook (bookname, price, coverimage, coversize, covertype, blog, filename, filesize, filetype,author) VALUES (:bookname, :price, :coverimage, :coversize, :covertype, :blog, :filename, :filesize, :filetype,:author)");
                     $sql->bindParam(':bookname', $name);
                     $sql->bindParam(':price', $price);
                     $sql->bindParam(':coverimage', $coverimagename);
@@ -51,6 +52,7 @@ if (isset($_POST['addbook'])) {
                     $sql->bindParam(':filename', $filename);
                     $sql->bindParam(':filesize', $filesize);
                     $sql->bindParam(':filetype', $filetype);
+                    $sql->bindParam(':author', $author);
                     $result = $sql->execute();
 
                     if ($result) {
