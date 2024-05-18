@@ -6,6 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $coverimage = $_FILES['coverimage']['name'];
     $blog = $_POST['blog'];
     $book =$_FILES['book']['name'];
+    $author = $_POST['author'];
    
 
     $error_message = array();
@@ -14,6 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($name)) {
       $error_message['name'] = "Name is required.";
   }
+  if (empty($author)) {
+    $error_message['author'] = "Author is required.";
+}
 
 
     
@@ -138,11 +142,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <fieldset class="form">
             <legend>Text Book</legend>
     
-            <form action="<?php echo (empty($error_message) && isset($name) && isset($price) && isset($coverimage) && isset($book)) ? '../backend/bookadd.php' : ''; ?>" enctype="multipart/form-data" method = 'POST'>
+            <form action="<?php echo (empty($error_message) && isset($author) && isset($name) && isset($price) && isset($coverimage) && isset($book)) ? '../backend/bookadd.php' : ''; ?>" enctype="multipart/form-data" method = 'POST'>
             <label>Book Name</label> <input type="text" name="name" required value="<?php echo isset($_POST['name']) ? $_POST['name'] : ''; ?>">
                 <?php if(isset($error_message['name'])): ?>
                     <div class="message">
                         <p ><?php echo $error_message['name']; ?></p>
+                    </div>
+                <?php endif; ?>
+                <label>Book Author</label> <input type="text" name="author" required value="<?php echo isset($_POST['author']) ? $_POST['author'] : ''; ?>">
+                <?php if(isset($error_message['author'])): ?>
+                    <div class="message">
+                        <p ><?php echo $error_message['author']; ?></p>
                     </div>
                 <?php endif; ?>
             <label>Price</label> <input type="number" name="price" required value="<?php echo isset($_POST['price']) ? $_POST['price'] : ''; ?>">
