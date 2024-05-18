@@ -235,7 +235,6 @@ form {
     margin-bottom: 10px;
     
   }
-  
   label {
     margin-right: 10px;
   }
@@ -463,7 +462,7 @@ form {
         border-radius: 10px;
         outline: none;
     }
-    
+
     .contact-row form input[type="submit"]:hover{
         border: 1px solid #0b910b;
         color: #0b910b;
