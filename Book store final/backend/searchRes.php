@@ -81,19 +81,6 @@ include "connection.php";
           </li>
           
         </ul>
-                <!-- <form action="searchRes.php" method = "get">
-                <div class="search-box">        
-                  <input type="search" name = "keyword" class="search" placeholder="Search by Author,name..">
-                  
-                  <i class='bx bx-search' type = "submit">Search</i>
-                </div>
-              </div>
-              <div class="menuicon">
-                <button class="icon" type="submit" value="Search">
-                  <i class="fa fa-bars"></i>
-              </button>
-            </div>
-            </form> -->
             <form action="searchRes.php" method="get">
               <div class="search-box"> 
                 <input type="text" name="keyword" placeholder="Search by Author or Name">
@@ -111,28 +98,16 @@ include "connection.php";
                     </ul>
                   </div>
                   
-                  <div class="main-header">
-                    <div class="header">
-                <h3>Smart Book Store</h3>
-                <h2>Find out your favorite here......</h2>
-                <p>
-                  Navigate through a rich collection of genres, from classics to indie gems, 
-                  celebrating stories from various cultures and backgrounds. Our user-friendly design
-                  and curated recommendations ensure a unique and enjoyable browsing experience. </p>
-                </div>
-            <video controls muted autoplay loop src="../video/video2.mp4" alt="this browser doesn't support video!">
-            </video>
-            </div>
-
           </header>
 
     <!--Text books Section-->
     
-        
         <?php
         try {
-          
-          $stmt = $conn->prepare("SELECT id, bookname, price, coverimage FROM textbook");
+        
+          $keyWord = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+ 
+          $stmt = $conn->prepare("SELECT * FROM textbook WHERE bookname LIKE '%$keyWord%' OR author LIKE '%$keyWord%'"); /// if author is the right db name !!! check it 
           $stmt->execute();
           
           // Fetch all results
@@ -159,8 +134,11 @@ include "connection.php";
           } else {
             echo "<p>No books found.</p>";
           }
-          $stmtaudio = $conn->prepare("SELECT id, bookname, price, coverimage,samplename FROM audiobook");
-          $stmtaudio->execute();
+
+          //audio 
+
+          $stmt = $conn->prepare("SELECT * FROM audiobook WHERE bookname LIKE '%$keyWord%' OR author LIKE '%$keyWord%'"); /// if author is the right db name !!! check it 
+          $stmt->execute();
           
           // Fetch all results
           $resultaudio = $stmtaudio->fetchAll(PDO::FETCH_ASSOC);
@@ -195,12 +173,9 @@ include "connection.php";
           echo "<p>Error: " . $e->getMessage() . "</p>";
         }
         ?>
-    
-   
       
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
       <script type="text/javascript" src="../js/script.js"></script>
 
     </body>
     </html>
-    

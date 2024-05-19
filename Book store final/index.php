@@ -2,7 +2,6 @@
 session_start();
 include "../backend/connection.php";
 
-
 ?>
 
 <!DOCTYPE html>
@@ -120,12 +119,7 @@ include "../backend/connection.php";
             echo "<p>Error: " . $e->getMessage() . "</p>";
           }
             ?>
-        
-        
-
-        
-
-        
+    
         </div>
     </section>
 <hr>
