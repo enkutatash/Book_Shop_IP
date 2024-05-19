@@ -142,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <fieldset class="form">
             <legend>Text Book</legend>
     
-            <form action="<?php echo (empty($error_message) && isset($author) && isset($name) && isset($price) && isset($coverimage) && isset($book)) ? '../backend/bookadd.php' : ''; ?>" enctype="multipart/form-data" method = 'POST'>
+            <form action="<?php echo (empty($error_message) && isset($author) && isset($name) && isset($price) && isset($coverimage) && isset($book)) ? '../backend/bookadd.php' : '../backend/books.php'; ?>" enctype="multipart/form-data" method = 'POST'>
             <label>Book Name</label> <input type="text" name="name" required value="<?php echo isset($_POST['name']) ? $_POST['name'] : ''; ?>">
                 <?php if(isset($error_message['name'])): ?>
                     <div class="message">

@@ -57,7 +57,6 @@ include "connection.php";
  
  <body>
    <!--Header Section-->
-   <header>
         <nav class="navbar">
           <div class="logo">
                 <img src="../img/logo2.jpg" alt="" style="width: 40px; height: 30px;"> 
@@ -69,7 +68,6 @@ include "connection.php";
                   <li><a href="../card.html">Cart</a></li>
 
                   <li><a href="../index.php">Home</a></li>
-                  
                   
                   <li class="dropdown">
                     <a href="./books.php">Books</a>
@@ -98,7 +96,6 @@ include "connection.php";
                     </ul>
                   </div>
                   
-          </header>
 
     <!--Text books Section-->
     
