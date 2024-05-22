@@ -11,10 +11,6 @@ if (!isset($_COOKIE['expiry'])){
     $mess = "Log-In To continue!";
     header("Location: ./pages/signin.php?message=$mess");
 }
-
-
-
-
 ?>
 
 <!DOCTYPE html>
