@@ -56,8 +56,6 @@ if((empty($error_message)  && isset($email) && isset($pass) )){
         echo "Error: " . $e->getMessage();
     }
 }
-
-
 }
 ?>
 

@@ -154,7 +154,6 @@ if (isset($_POST['register'])) {
                 <h1>Create Account</h1>
                 <input type="text" placeholder="Name" name="name" value="<?php echo isset($_POST['name']) ? $_POST['name'] : ''; ?>">
 
-                
                 <?php if(isset($error_message['name'])): ?>
                     <div class="message">
                         <p ><?php echo $error_message['name']; ?></p>

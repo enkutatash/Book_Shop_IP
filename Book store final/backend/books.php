@@ -165,7 +165,6 @@ include "connection.php";
           // Fetch all results
           $resultaudio = $stmtaudio->fetchAll(PDO::FETCH_ASSOC);
 
-
           //Audio Books Section
           if (count($resultaudio) > 0) {
            

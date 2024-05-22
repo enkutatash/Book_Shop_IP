@@ -128,7 +128,6 @@ include "../backend/connection.php";
         header("Location: ../pages/admin.php?" . mt_rand());
         exit();
       }
-
       // Fetch and display textbooks
       $stmt = $conn->prepare("SELECT id, bookname, price FROM textbook");
       $stmt->execute();

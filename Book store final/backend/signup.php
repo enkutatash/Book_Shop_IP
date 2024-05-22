@@ -46,7 +46,6 @@ if (isset($_POST['register'])) {
               
               header("Location: ../pages/signup.html");
               exit();
-                
             }
         }
     } catch (PDOException $e) {
