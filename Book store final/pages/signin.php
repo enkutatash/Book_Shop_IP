@@ -23,7 +23,6 @@ if (isset($_POST['login'])) {
 if((empty($error_message)  && isset($email) && isset($pass) )){
 
     try {
-        // Prepare and execute the SQL statement
         $stmt = $conn->prepare("SELECT * FROM user WHERE email = :email");
         $stmt->bindParam(':email', $email);
         $stmt->execute();
@@ -31,15 +30,20 @@ if((empty($error_message)  && isset($email) && isset($pass) )){
         // Check if the user exists
         if ($stmt->rowCount() > 0) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            echo $row['userpassword'].$pass;
             $password_hash = $row['userpassword'];
             
             // Verify the password
-            if (password_verify($pass, $password_hash)) {
-               
+            if ($pass == $password_hash) {
                 $_SESSION['id'] = $row['id'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['firstname'] = $row['firstname'];
-                header("Location: ../index.html");
+               
+                $id = $row['id'];
+                setcookie('expiry',time()+(7200) , time() + (7200), "/");
+
+                header("Location: ../index.php");
+                $pass = "";
                 exit();
             } else {
                 $error_message['password'] = "Wrong Password";
@@ -56,7 +60,6 @@ if((empty($error_message)  && isset($email) && isset($pass) )){
 
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -135,6 +138,10 @@ if((empty($error_message)  && isset($email) && isset($pass) )){
             }
     
         }
+        .err{
+            color :red;
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -151,7 +158,7 @@ if((empty($error_message)  && isset($email) && isset($pass) )){
             <div class="navmenu">
                 <ul>
                     <li><a href="../index.php">Home</a></li>
-                    <li><a href="../pages/signup.php">Sign Up</a></li>
+                    <li><a href="./signup.php">Sign Up</a></li>
                     <li><a href="#signin.php">Sign In</a></li>
                 </ul>
                 
@@ -173,6 +180,7 @@ if((empty($error_message)  && isset($email) && isset($pass) )){
                 
             </ul>
         </div>
+
         <fieldset class="form">
             <form action="" method = 'POST'>
 
@@ -192,7 +200,14 @@ if((empty($error_message)  && isset($email) && isset($pass) )){
                 <input class="btn" type="submit" name="login" value="Log In">
             </form>
             <span>Don't have an account? <a href="signup.html">Sign Up</a>  </span>
+
         </fieldset>
+
+        <?php
+            if (isset($_GET['message'])){
+                echo "<span> <h2 class = \"err\">". htmlspecialchars($_GET['message']) ."</h2></span>";
+            }
+        ?>
     </header>
     <!-- Include your other HTML elements here -->
     <!-- <script type="text/javascript" src="../js/script.js"></script>

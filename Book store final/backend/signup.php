@@ -35,6 +35,11 @@ if (isset($_POST['register'])) {
             $result = $sql->execute();
 
             if ($result) {
+                
+                $_SESSION['user_id'] = $conn->lastInsertId();
+                $_SESSION['username'] = $name;
+                $_SESSION['email'] = $email;
+
                 header("Location: ../index.html");
                 exit();
             } else {

@@ -1,6 +1,19 @@
 <?php
 session_start();
-include "../backend/connection.php";
+include "./backend/connection.php";
+
+if (isset($_COOKIE['expiry']) &&  $_COOKIE['expiry'] - time() < 0){
+    unset($_COOKIE["expiry"]);
+
+}
+ 
+if (!isset($_COOKIE['expiry'])){
+    $mess = "Log-In To continue!";
+    header("Location: ./pages/signin.php?message=$mess");
+}
+
+
+
 
 ?>
 
@@ -89,41 +102,29 @@ include "../backend/connection.php";
         <?php
         try {
 
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "bookstore";
-
-
-            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-            // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-          
-          $stmt = $conn->prepare("SELECT id, bookname, coverimage ,blog FROM textbook LIMIT 5");
-          $stmt->execute();
-          
-        
+                
+            $stmt = $conn->prepare("SELECT id, bookname, coverimage ,blog FROM textbook LIMIT 5");
+            $stmt->execute();
 
-          $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-          if (count($result) > 0) {
-            foreach ($result as $row) {
-                echo '<div class="col">';
-                echo '<img src="backend/uploads/' . htmlspecialchars($row['coverimage']) .'" alt="Book Image" class="card-img-top">';
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if (count($result) > 0) {
+                foreach ($result as $row) {
+                    echo '<div class="col">';
+                    echo '<img src="backend/uploads/' . htmlspecialchars($row['coverimage']) .'" alt="Book Image" class="card-img-top">';
 
-                echo '<p>'.$row['blog'].'</p>';
-                echo '</div>';
+                    echo '<p>'.$row['blog'].'</p>';
+                    echo '</div>';
 
+                }
+            }}catch(PDOException $e){
+                echo "<p>Error: " . $e->getMessage() . "</p>";
             }
-          }}catch(PDOException $e){
-            echo "<p>Error: " . $e->getMessage() . "</p>";
-          }
-            ?>
+                ?>
     
         </div>
     </section>
-<hr>
-    
+<hr> 
     <!--About Us Section-->
 <section id="about">
          <div class="set-rowa">

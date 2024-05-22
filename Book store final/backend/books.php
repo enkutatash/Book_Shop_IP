@@ -189,7 +189,7 @@ include "connection.php";
          echo" </section>";
           
           } else {
-            echo "<p>No books found.</p>";
+            echo "<p>No audio-books found.</p>";
           }
         } catch (PDOException $e) {
           echo "<p>Error: " . $e->getMessage() . "</p>";

@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+include "../backend/connection.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +47,7 @@ session_start();
         <span class="tooltip">Dashboard</span>
       </li>
       <li>
-        <a href=".\addbook.html">
+        <a href="./addbook.php">
           <i class="bx bxs-book-add"></i>
           <span class="nav-item">Add Books</span>
         </a>
@@ -112,14 +112,6 @@ session_start();
     <!--Table Section-->
     <?php
     try {
-      $servername = "localhost";
-      $username = "root";
-      $password = "";
-      $dbname = "bookstore";
-
-      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-      // set the PDO error mode to exception
-      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
       // Handle deletions
       if (isset($_GET['textbook_id'])) {

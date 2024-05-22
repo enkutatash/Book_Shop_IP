@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "#1E1";
 $dbname = "bookstore";
 
 try {
