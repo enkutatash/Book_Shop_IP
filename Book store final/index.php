@@ -43,11 +43,16 @@ include "./backend/connection.php";
                     <li><a href="#about">About</a></li>
                     <li><a href="#contactus">Contact </a> </li>
                 </ul>
-
-                <div class="search-box">
-                    <input type="search" class="search" placeholder="search here....">
-                    <i class='bx bx-search' onclick="search()"></i>
-                </div>
+                <form method="GET" action="search_result.php">
+                    <fieldset>
+                        <input type="text" id="s" name="s" value="" />
+                        <input type="submit" id="x" value="Search" />
+                        </fieldset>
+                </form>
+                <!-- <div class="search-box">
+            <input type="search" class="search" placeholder="search here....">
+            <i class='bx bx-search' onclick="search()"></i>
+            </div> -->
             </div>
 
             <div class="menuicon">
@@ -203,15 +208,15 @@ include "./backend/connection.php";
             }
         }
 
-        function search() {
-            const searchInput = document.querySelector('.search').value;
+        // function search() {
+        //     const searchInput = document.querySelector('.search').value;
 
-            if (searchInput.trim() !== "") {
-                window.location.href = './backend/search.php?q=' + encodeURIComponent(searchInput);
-            }
-        }
+        //     if (searchInput.trim() !== "") {
+        //         window.location.href = './backend/search.php?q=' + encodeURIComponent(searchInput);
+        //     }
+        // }
     </script>
-   
+
 </body>
 
 </html>
