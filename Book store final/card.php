@@ -1,3 +1,18 @@
+<?php
+session_start();
+include 'db.php';
+
+if (!isset($_SESSION['session_id'])) {
+    echo "Your cart is empty.";
+    exit();
+}
+
+$session_id = $_SESSION['session_id'];
+
+$stmt = $conn->prepare("SELECT books.id, books.title, books.author, books.price, cart.quantity FROM cart JOIN books ON cart.book_id = books.id WHERE cart.session_id = :session_id");
+$stmt->execute(['session_id' => $session_id]);
+$cart_items = $stmt->fetchAll();
+?>
 <!DOCTYPE html>
 <html lang="en">
  <head>
@@ -32,7 +47,7 @@
             <div class="logo">
                 <div></div>
                 <img src="img/logo2.jpg" alt="" style="width: 40px; height: 30px;"> 
-                <h2>Book Bay</h2>
+                <h2>Book Buy</h2>
             </div>
 
             <div class="navmenu" >
@@ -71,11 +86,21 @@
                     
                 </div> 
         
-                <div id="cardContainer"></div>
+                <div id="cardContainer">
+
+                <ul>
+                <?php foreach ($cart_items as $item): ?>
+                 <li>
+                <h2><?php echo htmlspecialchars($item['title']); ?></h2>
+                <p><?php echo htmlspecialchars($item['author']); ?></p>
+                <p>$<?php echo htmlspecialchars($item['price']); ?></p>
+                <p>Quantity: <?php echo htmlspecialchars($item['quantity']); ?></p>
+                <p>Total: $<?php echo htmlspecialchars($item['price'] * $item['quantity']); ?></p>
+            </li>
+        <?php endforeach; ?>
+                </div>
     </header>
 <hr>
-
-
 
 <script type="text/javascript" src="./js/cart.js"></script>
 <footer class="footer">
